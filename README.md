@@ -1,26 +1,59 @@
+<p align="center">
+    <a href="https://opensource.org/licenses/Apache-2.0">
+        <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/> 
+    </a>
+    <a href="https://github.com/Voyz/ibeam/releases">
+        <img src="https://img.shields.io/pypi/v/ibeam?label=version"/> 
+    </a>
+</p>
+
 # IBKR-Dashboard
 A React-based frontend for managing and visualizing interactions with the IBKR API, leveraging iBeam in Docker for seamless integration and connectivity.
 
-## Docker Setup
+## Prerequisites
+- Docker Desktop
+- Node.js 20.12.0 (managed via .nvmrc)
 
-### Prerequisites
-- Docker and Docker Compose installed
-- IBKR Trader Workstation (TWS) or IB Gateway running locally
+## Initial Setup
 
-### Running with Docker
-1. Build and start the containers:
+1. Clone the repository and install dependencies
+```bash
+git clone https://github.com/varepsilon123/IBKR-Dashboard.git
+cd IBKR-Dashboard
+```
 
-bash
-docker-compose up --build
+2. Create environment file
 
-<!-- 2. Access the dashboard at `http://localhost:3000` -->
+Use the env.list.example. DO NOT share your information.
+
+3. Make the development script executable
+```bash
+chmod +x dev.sh
+```
+
+## Development Commands
+
+The project includes a development script (`dev.sh`) with the following commands:
+
+- `./dev.sh build` - Build/rebuild the Docker containers
+  - Use when first setting up the project
+  - When changing Dockerfile or docker-compose.yml
+  - When updating dependencies in package.json
+
+- `./dev.sh start` - Start the development environment
+  - Main command for daily development
+  - Shows real-time logs in terminal
+  - Enables hot-reloading for React code
+
+- `./dev.sh daemon` - Run containers in background
+- `./dev.sh stop` - Stop all containers
+- `./dev.sh logs` - View container logs
 
 ### Development
 - Frontend runs on port 3000
-- iBeam API runs on port 5000
+- iBeam API runs on port 5055
 
-# React readme
-# React + Vite
+## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -28,3 +61,23 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Important Notes
+
+- Ensure TWS or IB Gateway is running before starting the containers
+- Keep your env.list file secure and never commit it to version control
+- The frontend container uses volume mounting for hot-reloading during development
+
+## Troubleshooting
+
+If you encounter issues:
+1. Ensure Docker Desktop is running
+2. Check if TWS/IB Gateway is running and accessible
+3. Verify your env.list credentials
+4. Try rebuilding with `./dev.sh build`
+
+## License
+
+See [LICENSE](https://github.com/varepsilon123/IBKR-Dashboard/blob/main/LICENSE)
+
+## Built by Fung
