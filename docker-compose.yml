@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    stdin_open: true # Required for React DevTools
+    command: npm run dev  # Use Vite's dev server instead of production build
+    depends_on:
+      - ibeam
+
+  ibeam:
+    image: voyz/ibeam
+    ports:
+      - "5055:5055"
+    env_file:
+      - .env.list
+    environment:
+      - TWS_HOST=host.docker.internal
+      - TWS_PORT=7497
+      - READONLY=false
+    restart: unless-stopped 
