@@ -20,7 +20,7 @@ services:
     ports:
       - "5055:5055"
     env_file:
-      - .env.list
+      - env.list
     environment:
       - TWS_HOST=host.docker.internal
       - TWS_PORT=7497
