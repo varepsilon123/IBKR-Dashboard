@@ -11,9 +11,15 @@ services:
     environment:
       - NODE_ENV=development
     stdin_open: true # Required for React DevTools
-    command: npm run dev  # Use Vite's dev server instead of production build
+    command: sh -c "npm install && npm run dev -- --host"  # Modified to ensure dependencies are installed
     depends_on:
       - ibeam
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
   ibeam:
     image: voyz/ibeam
@@ -26,3 +32,9 @@ services:
       - TWS_PORT=7497
       - READONLY=false
     restart: unless-stopped 
+    healthcheck:
+      test: ["CMD", "curl", "-X", "GET", "-k", "-f", "http://localhost:5055/v1/api/one/user"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

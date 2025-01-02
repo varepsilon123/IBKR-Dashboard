@@ -16,9 +16,9 @@ FROM node:20.12.0-alpine
 
 WORKDIR /app
 
-# Install production dependencies only
 COPY package*.json ./
-RUN npm install --production
+RUN npm install
+# RUN npm install --production
 
 # Copy dist files from builder stage (Vite uses 'dist' not 'build')
 COPY --from=builder /app/dist ./dist
