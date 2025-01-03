@@ -10,7 +10,7 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=${NODE_ENV:-development}
-    stdin_open: ${NODE_ENV:-development} # Required for React DevTools
+    stdin_open: ${STDIN_OPEN:-true}  # Enable stdin_open in development for React DevTools, disable in production
     command: sh -c "if [ \"$NODE_ENV\" = \"production\" ]; then serve -s dist -l 3000; else npm install && npm run dev -- --host; fi"
     depends_on:
       - ibeam

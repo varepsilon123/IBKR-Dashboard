@@ -2,7 +2,10 @@
 
 function ibkr-dev() {
     # Default to development mode if not specified
-    local mode=${2:-development}
+    local mode=${2:-"development"}
+    
+    # Export NODE_ENV so Docker Compose can access it
+    export NODE_ENV=$mode
     
     case $1 in
         "start")
