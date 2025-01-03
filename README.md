@@ -32,19 +32,33 @@ chmod +x dev.sh
 
 The project includes a development script (`dev.sh`) with the following commands:
 
-- `./dev.sh build` - Build/rebuild the Docker containers
+- `./dev.sh build [mode]` - Build/rebuild the Docker containers
   - Use when first setting up the project
   - When changing Dockerfile or docker-compose.yml
   - When updating dependencies in package.json
+  - Optional [mode]: development (default) or production
 
-- `./dev.sh start` - Start the development environment
+- `./dev.sh start [mode]` - Start the development environment
   - Main command for daily development
   - Shows real-time logs in terminal
-  - Enables hot-reloading for React code
+  - Enables hot-reloading for React code in development mode
+  - Optional [mode]: development (default) or production
 
-- `./dev.sh daemon` - Run containers in background
+- `./dev.sh daemon [mode]` - Run containers in background
 - `./dev.sh stop` - Stop all containers
 - `./dev.sh logs` - View container logs
+
+Examples:
+```bash
+# Start in development mode (default)
+./dev.sh start
+
+# Build for production
+./dev.sh build production
+
+# Run in production mode
+./dev.sh start production
+```
 
 ### Development
 - Frontend runs on port 3000
@@ -69,12 +83,5 @@ Currently, two official plugins are available:
 
 If you encounter issues:
 1. Ensure Docker Desktop is running
-2. Check if TWS/IB Gateway is running and accessible
-3. Verify your env.list credentials
-4. Try rebuilding with `./dev.sh build`
-
-## License
-
-See [LICENSE](https://github.com/varepsilon123/IBKR-Dashboard/blob/main/LICENSE)
-
-## Built by Fung
+2. Verify your env.list credentials
+3. Try rebuilding with `./dev.sh build`

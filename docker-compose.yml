@@ -2,16 +2,16 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ${BUILD_MODE:-development}.Dockerfile
     ports:
       - "3000:3000"
     volumes:
       - ./:/app
       - /app/node_modules
     environment:
-      - NODE_ENV=development
-    stdin_open: true # Required for React DevTools
-    command: sh -c "npm install && npm run dev -- --host"  # Modified to ensure dependencies are installed
+      - NODE_ENV=${NODE_ENV:-development}
+    stdin_open: ${NODE_ENV:-development} # Required for React DevTools
+    command: sh -c "if [ \"$NODE_ENV\" = \"production\" ]; then serve -s dist -l 3000; else npm install && npm run dev -- --host; fi"
     depends_on:
       - ibeam
     healthcheck:
