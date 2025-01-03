@@ -32,46 +32,50 @@ chmod +x dev.sh
 
 The project includes a development script (`dev.sh`) with the following commands:
 
+### When to Rebuild Docker
+
+Run `./dev.sh build [mode]` when:
+- Modifying `package.json` (adding/removing dependencies)
+- Changing Docker-related files:
+  - `docker-compose.yml`
+  - `development.Dockerfile`
+  - `production.Dockerfile`
+- Modifying `vite.config.js`
+- Changing environment variables in `env.list`
+
+### Auto-watching Development
+
+Run `./dev.sh start` for development with auto-watching when modifying:
+- React/frontend code (`.tsx`, `.jsx`)
+- Styles (`.css`)
+- Assets
+- Controllers
+- Any other source files in `src/`
+
+### Available Commands:
 - `./dev.sh build [mode]` - Build/rebuild the Docker containers
-  - Use when first setting up the project
-  - When changing Dockerfile or docker-compose.yml
-  - When updating dependencies in package.json
-  - Optional [mode]: development (default) or production
-
-- `./dev.sh start [mode]` - Start the development environment
-  - Main command for daily development
-  - Shows real-time logs in terminal
-  - Enables hot-reloading for React code in development mode
-  - Optional [mode]: development (default) or production
-
+- `./dev.sh start [mode]` - Start with auto-watching (main development command)
 - `./dev.sh daemon [mode]` - Run containers in background
 - `./dev.sh stop` - Stop all containers
 - `./dev.sh logs` - View container logs
 
+Optional [mode]: development (default) or production
+
 Examples:
 ```bash
-# Start in development mode (default)
+# Start in development mode with auto-watching
 ./dev.sh start
+
+# Rebuild after dependency changes
+./dev.sh build
 
 # Build for production
 ./dev.sh build production
-
-# Run in production mode
-./dev.sh start production
 ```
 
 ### Development
 - Frontend runs on port 3000
 - iBeam API runs on port 5055
-
-## React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 ## Important Notes
 
