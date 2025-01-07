@@ -12,6 +12,7 @@ lerna-debug.log*
 
 # Environment variables
 .env
+conf.yaml
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json

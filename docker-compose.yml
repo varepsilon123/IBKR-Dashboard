@@ -24,17 +24,22 @@ services:
   ibeam:
     image: voyz/ibeam
     ports:
-      - "5055:5055"
+      - "5055:5000" # 5000 is busy in MacOS, directing local port 5055 to docker port 5000
     env_file:
       - .env
-    environment:
-      - TWS_HOST=host.docker.internal
-      - TWS_PORT=7497
-      - READONLY=false
-    restart: unless-stopped 
+    # environment:
+    #   - TWS_HOST=host.docker.internal
+    #   - TWS_PORT=7497
+    #   - READONLY=false
+    volumes:
+      - ./inputs/conf.yaml:/srv/inputs/conf.yaml
+      # - ./inputs/cacert.pem:/srv/inputs/cacert.pem # Not using cacert yet
+      # - ./inputs/cacert.jks:/srv/inputs/cacert.jks # Not using cacert yet
+    network_mode: bridge # Required due to clientportal.gw IP whitelist
+    restart: "no" # Prevents IBEAM_MAX_FAILED_AUTH from being exceeded
     healthcheck:
       test: ["CMD", "curl", "-X", "GET", "-k", "-f", "http://localhost:5055/v1/api/one/user"]
       interval: 10s
       timeout: 5s
-      retries: 3
+      retries: 10
       start_period: 10s
