@@ -56,6 +56,7 @@ Run `./dev.sh start` for development with auto-watching when modifying:
 
 ### Available Commands:
 - `./dev.sh build [mode]` - Build/rebuild the Docker containers
+- `./dev.sh rebuild-frontend [mode]` - Rebuild the frontend service without affecting iBeam
 - `./dev.sh start [mode]` - Start with auto-watching (main development command)
 - `./dev.sh daemon [mode]` - Run containers in background
 - `./dev.sh stop` - Stop all containers

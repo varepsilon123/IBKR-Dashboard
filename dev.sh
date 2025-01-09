@@ -23,9 +23,12 @@ function ibkr-dev() {
         "logs")
             docker compose logs -f
             ;;
+        "rebuild-frontend")
+            BUILD_MODE=$mode docker-compose up --build --no-deps frontend
+            ;;
         *)
-            echo "Usage: ./dev.sh [start|build|daemon|stop|logs] [development|production]"
-            echo "Example: ./dev.sh build production"
+            echo "Usage: ./dev.sh [start|build|daemon|stop|logs|rebuild-frontend] [development|production]"
+            echo "Example: ./dev.sh rebuild-frontend production"
             ;;
     esac
 }
