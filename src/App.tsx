@@ -1,18 +1,18 @@
 import React from 'react';
 import './App.css'
 import AuthCheck from './components/AuthCheck/AuthCheck'
+import Menu from './components/Menu/Menu'
 
 const App: React.FC = () => {
   return (
-    <>
-      <h1>IBKR Dashboard</h1>
+    <div className="relative">
+      <Menu />
+      <h1 className="mt-4">IBKR Dashboard</h1>
+      <p>Click the menu button on the top left corner to explore the application.</p>
       <div className="card">
         <AuthCheck />
       </div>
-      {/* <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p> */}
-    </>
+    </div>
   )
 }
 
