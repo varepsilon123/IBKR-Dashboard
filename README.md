@@ -101,3 +101,8 @@ For detailed instructions on how to add TLS certificates and enable HTTPS in you
 - [TLS Certificates and HTTPS](https://github.com/Voyz/ibeam/wiki/TLS-Certificates-and-HTTPS): Understand how to provide custom TLS certificates and configure HTTPS for secure communication.
 
 These resources will help you ensure that your IBeam setup is secure and properly configured.
+
+## To-do
+1. Font styles: IBM Plex Mono for data tables. Noto Sans JP by default.
+2. More API integrations and a dedicated page for each
+3. Start putting analysis into the application
