@@ -24,7 +24,7 @@ services:
   ibeam:
     image: voyz/ibeam
     ports:
-      - "5055:5000" # 5000 is busy in MacOS, directing local port 5055 to docker port 5000
+      - "5000:5000" # 5000 is busy in MacOS if you turned on Airplay receiver
     env_file:
       - .env
     # environment:
@@ -33,8 +33,8 @@ services:
     #   - READONLY=false
     volumes:
       - ./inputs/conf.yaml:/srv/inputs/conf.yaml
-      # - ./inputs/cacert.pem:/srv/inputs/cacert.pem # Not using cacert yet
-      # - ./inputs/cacert.jks:/srv/inputs/cacert.jks # Not using cacert yet
+      - ./inputs/cacert.pem:/srv/inputs/cacert.pem
+      - ./inputs/cacert.jks:/srv/inputs/cacert.jks
     network_mode: bridge # Required due to clientportal.gw IP whitelist
     restart: "no" # Prevents IBEAM_MAX_FAILED_AUTH from being exceeded
     healthcheck:
