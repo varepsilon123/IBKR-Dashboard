@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css'
-import AuthCheck from './components/AuthCheck'
+import AuthCheck from './components/AuthCheck/AuthCheck'
 
 const App: React.FC = () => {
   return (

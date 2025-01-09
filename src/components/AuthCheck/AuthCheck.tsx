@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { checkAuthStatus } from '../controllers/auth.controller';
+import { checkAuthStatus } from '../../controllers/auth/auth.controller';
 
 interface AuthCheckProps {
   children?: React.ReactNode;
