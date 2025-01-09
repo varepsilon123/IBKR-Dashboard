@@ -1,12 +1,10 @@
 import axios from 'axios';
 
-// @ts-expect-error Environment variables are defined in env.list
-const API_URL = import.meta.env.VITE_IBEAM_GATEWAY_BASE_URL;
-import { AxiosRequestConfig } from 'axios';
-
 export const checkAuthStatus = async (): Promise<{ success: boolean; message: string }> => {
   try {
-    const response = await axios.get(`${API_URL}/v1/api/one/user`);
+
+    // const response = await axios.get('/v1/api/one/user');
+    const response = await axios.get('/v1/api/portfolio/accounts');
     
     console.log('Auth check successful:', response.data);
     return { 
