@@ -7,6 +7,8 @@
 # IBKR-Dashboard
 A React-based frontend for managing and visualizing interactions with the IBKR API, leveraging iBeam in Docker for seamless integration and connectivity.
 
+This project utilizes **iBeam**, a powerful tool for interacting with the IBKR Client Portal API, allowing for efficient data retrieval and management. By running iBeam within a **Docker** container, the application ensures a consistent and isolated environment, simplifying the setup process and enhancing portability. This setup allows users to easily connect to the IBKR Client Portal, facilitating a smooth experience for managing their trading activities and data visualization.
+
 ## Prerequisites
 - Docker Desktop
 - Node.js 20.12.0 (managed via .nvmrc)
@@ -89,3 +91,12 @@ If you encounter issues:
 1. Ensure Docker Desktop is running
 2. Verify your env.list credentials
 3. Try rebuilding with `./dev.sh build`
+
+## Additional Resources
+
+For detailed instructions on how to add TLS certificates and enable HTTPS in your IBeam setup, please refer to the following documentation:
+
+- [Inputs and Outputs](https://github.com/Voyz/ibeam/wiki/Inputs-And-Outputs): Learn about the required input files and how to configure them for your IBeam deployment.
+- [TLS Certificates and HTTPS](https://github.com/Voyz/ibeam/wiki/TLS-Certificates-and-HTTPS): Understand how to provide custom TLS certificates and configure HTTPS for secure communication.
+
+These resources will help you ensure that your IBeam setup is secure and properly configured.
