@@ -22,7 +22,7 @@ function Menu() {
                 {isOpen ? <FaTimes /> : <FaBars />}
             </div>
             {isOpen && (
-                <div className="absolute top-0 left-0 h-full w-64 mt-12">
+                <div className="animate-fadeIn absolute top-0 left-0 h-full w-64 mt-12">
                     <ul className="flex flex-col">
                         <li onClick={() => handlePageChange('home')} className={menuItemClasses}>Home</li>
                         <li onClick={() => handlePageChange('authCheck')} className={menuItemClasses}>Auth Check</li>
