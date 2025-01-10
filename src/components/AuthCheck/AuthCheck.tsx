@@ -34,14 +34,17 @@ const AuthCheck: React.FC<AuthCheckProps> = ({ children }) => {
     verifyAuth();
   }, []);
 
-  if (isLoading) {
-    return <div>Checking connection...</div>;
-  }
-
   return (
     <div>
       <button onClick={verifyAuth}>Verify Auth</button>
-      <p>{showMessage && status && <span>{status.message}</span>}</p>
+      <p>
+        {
+          status && 
+            <span className={showMessage? 'animate-fadeIn':'animate-fadeOut'}>
+              {status.message}
+            </span>
+        }
+      </p>
       {/* {children} */}
     </div>
   );
