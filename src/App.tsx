@@ -16,7 +16,7 @@ const App: React.FC = () => {
     <Router>
       <div className="relative noto-sans-jp-regular">
         <Menu onToggle={handleMenuToggle} />
-        <div className={`transition-all duration-500 ${isMenuOpen ? 'ml-72' : 'ml-10'} mr-10 mt-20`}>
+        <div className={`transition-all duration-500 ${isMenuOpen ? 'ml-72' : 'ml-10'} mr-10`}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/trend" element={<TrendIdentification />} />
