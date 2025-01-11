@@ -4,8 +4,12 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 function Menu() {
     const [isOpen, setIsOpen] = useState(false);
     const [activePage, setActivePage] = useState('home');
+    const menuItems = [
+        { key: 'home', label: 'Home' },
+        { key: 'authCheck', label: 'Auth Check' },
+      ];
 
-    const menuItemClasses = 'p-4 hover:bg-gray-500 transition-all hover:scale-125';
+    const menuItemClasses = 'p-4 hover:bg-gray-500 transition-all hover:scale-110';
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -23,9 +27,16 @@ function Menu() {
             </div>
             {isOpen && (
                 <div className="animate-fadeIn absolute top-0 left-0 h-full w-64 mt-12">
-                    <ul className="flex flex-col">
-                        <li onClick={() => handlePageChange('home')} className={menuItemClasses}>Home</li>
-                        <li onClick={() => handlePageChange('authCheck')} className={menuItemClasses}>Auth Check</li>
+                    <ul>
+                        {menuItems.map((item) => (
+                          <li 
+                            key={item.key} 
+                            onClick={() => handlePageChange(item.key)} 
+                            className={menuItemClasses}
+                          >
+                            {item.label}
+                          </li>
+                        ))}
                     </ul>
                 </div>
             )}
