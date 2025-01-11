@@ -5,9 +5,9 @@
 </p>
 
 # IBKR-Dashboard
-A React-based frontend for managing and visualizing interactions with the IBKR API, leveraging iBeam in Docker for seamless integration and connectivity.
+IBKR-Dashboard is a React-based frontend client for stock analysis, designed to manage and visualize interactions with the IBKR API. It leverages iBeam in Docker for seamless integration and connectivity.
 
-This project utilizes **iBeam**, a powerful tool for interacting with the IBKR Client Portal API, allowing for efficient data retrieval and management. By running iBeam within a **Docker** container, the application ensures a consistent and isolated environment, simplifying the setup process and enhancing portability. This setup allows users to easily connect to the IBKR Client Portal, facilitating a smooth experience for managing their trading activities and data visualization.
+This application focuses on building dynamic tables and dashboards, providing analytical tools inspired by the strategies and criteria detailed in **Trade Like a Stock Market Wizard: How to Achieve Super Performance in Stocks in Any Market** by **Mark Minervini**.
 
 ## Prerequisites
 - Docker Desktop
@@ -103,6 +103,39 @@ For detailed instructions on how to add TLS certificates and enable HTTPS in you
 These resources will help you ensure that your IBeam setup is secure and properly configured.
 
 ## To-do
+
+### Styling
 1. Font styles: IBM Plex Mono for data tables. Noto Sans JP by default.
+
+### Features
 2. More API integrations and a dedicated page for each
 3. Start putting analysis into the application
+
+### Analysis
+#### Trend Identification
+- Focus on stocks in Stage 2 of the market cycle (advancing phase).
+- Confirm an uptrend by analyzing moving averages.
+  - A stock is in an uptrend if it is trading above its 200-day moving average.
+  - The 50-day moving average should also be above the 200-day moving average, indicating strength.
+
+#### Fundamental Growth
+- Look for stocks with consistent growth in earnings per share (EPS) and sales (20–50% growth).
+- Identify improving profit margins, a sign of operational efficiency.
+- Avoid companies with erratic earnings or negative trends.
+
+#### Catalysts
+- Look for external factors such as:
+  - New products or innovations.
+  - Major contracts or acquisitions.
+  - Regulatory approvals (e.g., FDA approvals in pharmaceuticals).
+- Monitor industry trends and companies likely to lead them.
+
+#### Entry Points
+- Enter after tight consolidations or base formations (e.g., cup-and-handle pattern).
+- Volume should decrease during consolidation and increase significantly during a breakout.
+- Buy as close as possible to the pivot point (breakout level).
+
+#### Exit Points
+- Stop-loss: Exit if the stock drops 7–8% below the purchase price.
+- Profit-taking: Exit when the stock shows signs of exhaustion, e.g., parabolic price rises or declines in volume during advances.
+- Use a trailing stop to lock in profits while staying in the trend.
