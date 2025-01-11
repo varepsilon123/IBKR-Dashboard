@@ -105,11 +105,17 @@ These resources will help you ensure that your IBeam setup is secure and properl
 ## To-do
 
 ### Styling
-1. Font styles: IBM Plex Mono for data tables. Noto Sans JP by default.
+1. ~~Font styles: IBM Plex Mono for data tables. Noto Sans JP by default.~~
 
 ### Features
 2. More API integrations and a dedicated page for each
 3. Start putting analysis into the application
+- Trend Identification
+  - Placeholder page is done
+- Fundamental Growth
+- Catalysts
+- Entry Points
+- Exit Points
 
 ### Analysis
 #### Trend Identification
