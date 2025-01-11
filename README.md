@@ -78,20 +78,20 @@ Examples:
 
 ### Development
 - Frontend runs on port 3000
-- iBeam API runs on port 5055
+- iBeam API runs on port 5000
 
 ## Important Notes
 
-- Ensure TWS or IB Gateway is running before starting the containers
-- Keep your env.list file secure and never commit it to version control
+- Keep your .env file secure and never commit it to version control
 - The frontend container uses volume mounting for hot-reloading during development
 
 ## Troubleshooting
 
 If you encounter issues:
 1. Ensure Docker Desktop is running
-2. Verify your env.list credentials
+2. Verify your .env credentials
 3. Try rebuilding with `./dev.sh build`
+4. Check for ports
 
 ## Additional Resources
 
