@@ -2,7 +2,11 @@ import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-function Menu() {
+interface MenuProps {
+  onToggle: (isOpen: boolean) => void;
+}
+
+function Menu({ onToggle }: MenuProps) {
     const [isOpen, setIsOpen] = useState(false);
     const menuItems = [
         { key: 'home', label: 'Home', path: '/' },
@@ -13,6 +17,7 @@ function Menu() {
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
+        onToggle(!isOpen);
     };
 
     return (
@@ -22,12 +27,10 @@ function Menu() {
             </div>
             {isOpen && (
                 <div className="animate-fadeIn absolute top-0 left-0 h-full w-64 mt-12">
-                    
                     <ul>
                         {menuItems.map((item) => (
-                            <Link to={item.path}>
+                            <Link to={item.path} key={item.key}>
                                 <li 
-                                  key={item.key} 
                                   onClick={() => toggleMenu()} 
                                   className={menuItemClasses}
                                 >
