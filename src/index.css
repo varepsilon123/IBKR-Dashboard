@@ -69,3 +69,13 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* <uniquifier>: Use a unique and descriptive class name */
+/* <weight>: Use a value from 100 to 900 */
+
+.noto-sans-jp-regular {
+  font-family: "Noto Sans JP", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}

@@ -38,12 +38,12 @@ const App: React.FC = () => {
   }, [showParagraph]);
 
   return (
-    <div className="relative">
+    <div className="relative noto-sans-jp-regular">
       <Menu />
       <h1
         className={`transition-all duration-1000 ease-in-out ${
           headerZoomed
-            ? 'scale-125' : 'scale-100'
+            ? 'scale-150 translate-y-full' : 'scale-100'
         } mt-72 text-center animate-fadeIn`}
       >IBKR Dashboard</h1>
       {showParagraph && (
