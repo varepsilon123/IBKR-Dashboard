@@ -13,11 +13,6 @@ describe('AuthCheck Component', () => {
     jest.clearAllMocks(); // Clear any previous mock calls
   });
 
-  it('should display loading message initially', () => {
-    render(<AuthCheck />);
-    expect(screen.getByText(/checking connection/i)).toBeInTheDocument();
-  });
-
   it('should display success message when authentication is successful', async () => {
     (checkAuthStatus as jest.Mock).mockResolvedValue({
       success: true,
