@@ -36,7 +36,7 @@ const AuthCheck: React.FC<AuthCheckProps> = ({ children }) => {
 
   return (
     <div>
-      <button onClick={verifyAuth}>Verify Auth</button>
+      <button className='mb-1' onClick={verifyAuth}>Verify Auth</button>
       <p>
         {
           status && 
