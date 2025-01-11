@@ -47,12 +47,12 @@ const App: React.FC = () => {
         } mt-72 text-center animate-fadeIn`}
       >IBKR Dashboard</h1>
       {showParagraph && (
-        <p className="mt-2 animate-fadeIn">
+        <p className="mt-3 animate-fadeIn">
           Click the menu button on the top left corner to explore the application.
         </p>
       )}
       {showCard && (
-        <div className="card animate-fadeIn">
+        <div className="card mt-10 animate-fadeIn">
           <AuthCheck />
         </div>
       )}
