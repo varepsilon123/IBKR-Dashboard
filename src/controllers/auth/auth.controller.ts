@@ -4,7 +4,7 @@ export const checkAuthStatus = async (): Promise<{ success: boolean; message: st
   try {
 
     // const response = await axios.get('/v1/api/one/user');
-    const response = await axios.get('/v1/api/portfolio/accounts');
+    const response = await axios.get(`${import.meta.env.VITE_IBEAM_GATEWAY_BASE_URL}/v1/api/portfolio/accounts`);
     
     return { 
       success: true, 
