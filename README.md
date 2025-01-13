@@ -117,7 +117,28 @@ These resources will help you ensure that your IBeam setup is secure and properl
 - Entry Points
 - Exit Points
 
-### Analysis
+### System Design
+4. System redesign for a backend service to handle analysis
+
+After all 5 analysis features have been deployed, the system will be redesigned to move the analysis part to a backend service. This backend service will process the analysis and store the daily results in a database. This allows for the comparison of results across different days, providing a historical perspective on the analysis.
+
+- Backend service for analysis
+- Database for storing daily results
+- Comparison of daily results for trend analysis
+- Enhanced performance and scalability
+- Improved data integrity and security
+- Streamlined frontend for better user experience
+
+#### Potential Solution: Next.js
+Consider deploying Next.js for the following benefits:
+- **Server-Side Rendering (SSR)**: Improves performance and SEO by rendering pages on the server.
+- **Static Site Generation (SSG)**: Pre-renders pages at build time for faster load times.
+- **API Routes**: Provides a way to create backend endpoints within the same framework, simplifying the architecture.
+- **Built-in CSS and Sass support**: Simplifies styling and component-based design.
+
+Next.js can help in creating a more efficient and scalable frontend while integrating seamlessly with the backend services for analysis.
+
+### Analysis Strategies
 #### Trend Identification
 - Focus on stocks in Stage 2 of the market cycle (advancing phase).
 - Confirm an uptrend by analyzing moving averages.
