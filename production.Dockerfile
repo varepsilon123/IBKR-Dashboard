@@ -1,23 +1,23 @@
 # Build stage
-FROM node:20.12.0-alpine as builder
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
 # Copy package files first for better caching
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
 # Copy source files and build
 COPY . .
 RUN npm run build
 
 # Production stage
-FROM node:20.12.0-alpine
+FROM node:22-alpine
 
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 # RUN npm install --production
 
 # Copy dist files from builder stage (Vite uses 'dist' not 'build')

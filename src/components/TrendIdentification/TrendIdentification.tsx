@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-interface TrendIdentificationProps {
-  children?: React.ReactNode;
-}
-
-const TrendIdentification: React.FC<TrendIdentificationProps> = ({ children }) => {
+const TrendIdentification: React.FC = () => {
   return (
     <div>
         <h2 className="text-2xl font-bold mb-4">Trend Identification</h2>
@@ -52,7 +48,6 @@ const TrendIdentification: React.FC<TrendIdentificationProps> = ({ children }) =
                 </tr>
             </tbody>
         </table>
-      {/* {children} */}
     </div>
   );
 };

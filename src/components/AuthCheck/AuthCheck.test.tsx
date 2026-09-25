@@ -4,17 +4,17 @@ import AuthCheck from './AuthCheck';
 import { checkAuthStatus } from '../../controllers/auth/auth.controller';
 
 // Mock the checkAuthStatus function
-jest.mock('../../controllers/auth/auth.controller', () => ({
-  checkAuthStatus: jest.fn(),
+vi.mock('../../controllers/auth/auth.controller', () => ({
+  checkAuthStatus: vi.fn(),
 }));
 
 describe('AuthCheck Component', () => {
   beforeEach(() => {
-    jest.clearAllMocks(); // Clear any previous mock calls
+    vi.clearAllMocks(); // Clear any previous mock calls
   });
 
   it('should display success message when authentication is successful', async () => {
-    (checkAuthStatus as jest.Mock).mockResolvedValue({
+    vi.mocked(checkAuthStatus).mockResolvedValue({
       success: true,
       message: 'Successfully connected to IBKR Gateway',
     });
@@ -28,7 +28,7 @@ describe('AuthCheck Component', () => {
   });
 
   it('should display error message when authentication fails', async () => {
-    (checkAuthStatus as jest.Mock).mockRejectedValue(new Error('Connection error occurred'));
+    vi.mocked(checkAuthStatus).mockRejectedValue(new Error('Connection error occurred'));
 
     render(<AuthCheck />);
 
@@ -39,7 +39,7 @@ describe('AuthCheck Component', () => {
   });
 
   it('should call verifyAuth when button is clicked', async () => {
-    (checkAuthStatus as jest.Mock).mockResolvedValue({
+    vi.mocked(checkAuthStatus).mockResolvedValue({
       success: true,
       message: 'Successfully connected to IBKR Gateway',
     });

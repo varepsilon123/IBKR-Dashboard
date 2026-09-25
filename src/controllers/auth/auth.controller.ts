@@ -1,21 +1,24 @@
 import axios from 'axios';
 
+// Relative URL: the Vite dev server proxies /v1/api to the iBeam gateway (see vite.config.js)
+const AUTH_STATUS_URL = '/v1/api/iserver/auth/status';
+
+interface AuthStatusResponse {
+  authenticated: boolean;
+  connected: boolean;
+  competing: boolean;
+}
+
 export const checkAuthStatus = async (): Promise<{ success: boolean; message: string }> => {
   try {
+    const { data } = await axios.post<AuthStatusResponse>(AUTH_STATUS_URL);
 
-    // const response = await axios.get('/v1/api/one/user');
-    const response = await axios.get(`${import.meta.env.VITE_IBEAM_GATEWAY_BASE_URL}/v1/api/portfolio/accounts`);
-    
-    return { 
-      success: true, 
-      message: 'Successfully connected to IBKR Gateway' 
-    };
-    
-  } catch (error) {
-    // console.error('Auth check failed:', error instanceof Error ? error.message : 'Unknown error');
-    return { 
-      success: false, 
-      message: 'Failed to connect to IBKR Gateway' 
-    };
+    if (data.authenticated && data.connected) {
+      return { success: true, message: 'Successfully connected to IBKR Gateway' };
+    }
+    return { success: false, message: 'IBKR Gateway reachable but not authenticated' };
+  } catch {
+    // 401 from the gateway means no brokerage session; network errors mean the gateway is down
+    return { success: false, message: 'Failed to connect to IBKR Gateway' };
   }
 };
