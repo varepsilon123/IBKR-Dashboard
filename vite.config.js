@@ -13,8 +13,9 @@ const https = fs.existsSync(keyPath) && fs.existsSync(certPath)
   : undefined
 
 // iBeam gateway address as seen by the dev server (not the browser).
-// Docker Compose sets this to https://ibeam:5000; locally it defaults to https://localhost:5000.
-const gatewayUrl = process.env.IBEAM_GATEWAY_URL || 'https://localhost:5000'
+// Docker Compose sets this to https://ibeam:5000 (container network, no macOS clash).
+// On the host it defaults to https://localhost:5050, the host port compose publishes iBeam on.
+const gatewayUrl = process.env.IBEAM_GATEWAY_URL || 'https://localhost:5050'
 
 // https://vite.dev/config/
 export default defineConfig({

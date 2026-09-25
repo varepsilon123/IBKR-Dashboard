@@ -26,7 +26,8 @@ services:
   ibeam:
     image: voyz/ibeam:0.5.13
     ports:
-      - "5000:5000" # 5000 is busy in MacOS if you turned on Airplay receiver
+      # Host side defaults to 5050: macOS AirPlay Receiver owns host port 5000. Container side stays 5000.
+      - "${IBEAM_HOST_PORT:-5050}:5000"
     env_file:
       - .env
     volumes:
