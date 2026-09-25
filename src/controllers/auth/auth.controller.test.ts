@@ -1,30 +1,40 @@
-import { checkAuthStatus } from './auth.controller';
 import axios from 'axios';
+import { checkAuthStatus } from './auth.controller';
 
-jest.mock('axios');
+vi.mock('axios');
 
 describe('checkAuthStatus', () => {
-  it('should return success when API call is successful', async () => {
-    // Mocking a successful response
-    (axios.get as jest.Mock).mockResolvedValue({ data: {} });
+  it('should return success when the gateway is authenticated and connected', async () => {
+    vi.mocked(axios.post).mockResolvedValue({ data: { authenticated: true, connected: true, competing: false } });
 
     const result = await checkAuthStatus();
-    
-    expect(result).toEqual({ 
-      success: true, 
-      message: 'Successfully connected to IBKR Gateway' 
+
+    expect(axios.post).toHaveBeenCalledWith('/v1/api/iserver/auth/status');
+    expect(result).toEqual({
+      success: true,
+      message: 'Successfully connected to IBKR Gateway'
+    });
+  });
+
+  it('should return failure when the gateway is reachable but not authenticated', async () => {
+    vi.mocked(axios.post).mockResolvedValue({ data: { authenticated: false, connected: true, competing: false } });
+
+    const result = await checkAuthStatus();
+
+    expect(result).toEqual({
+      success: false,
+      message: 'IBKR Gateway reachable but not authenticated'
     });
   });
 
   it('should return failure when API call fails', async () => {
-    // Mocking a failed response
-    (axios.get as jest.Mock).mockRejectedValue(new Error('Network Error'));
+    vi.mocked(axios.post).mockRejectedValue(new Error('Network Error'));
 
     const result = await checkAuthStatus();
-    
-    expect(result).toEqual({ 
-      success: false, 
-      message: 'Failed to connect to IBKR Gateway' 
+
+    expect(result).toEqual({
+      success: false,
+      message: 'Failed to connect to IBKR Gateway'
     });
   });
 });

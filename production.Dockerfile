@@ -1,34 +1,23 @@
 # Build stage
-FROM node:20.12.0-alpine as builder
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
 # Copy package files first for better caching
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
 # Copy source files and build
 COPY . .
 RUN npm run build
 
-# Production stage
-FROM node:20.12.0-alpine
+# Production stage: nginx serves dist and proxies /v1/api to iBeam (see nginx.conf)
+FROM nginx:1.29-alpine
 
-WORKDIR /app
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-COPY package*.json ./
-RUN npm install
-# RUN npm install --production
-
-# Copy dist files from builder stage (Vite uses 'dist' not 'build')
-COPY --from=builder /app/dist ./dist
-
-# Add healthcheck
 HEALTHCHECK --interval=30s --timeout=3s \
   CMD wget --no-verbose --tries=1 --spider http://localhost:3000 || exit 1
 
 EXPOSE 3000
-
-# Use a production-ready server like serve
-RUN npm install -g serve
-CMD ["serve", "-s", "dist", "-l", "3000"] 

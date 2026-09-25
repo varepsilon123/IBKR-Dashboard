@@ -11,7 +11,7 @@ This application focuses on building dynamic tables and dashboards, providing an
 
 ## Prerequisites
 - Docker Desktop
-- Node.js 20.12.0 (managed via .nvmrc)
+- Node.js 22.12+
 
 ## Initial Setup
 
@@ -23,7 +23,7 @@ cd IBKR-Dashboard
 
 2. Create environment file
 
-Use the env.list.example. DO NOT share your information.
+Copy `.env.example` to `.env` and `inputs/conf.yaml.example` to `inputs/conf.yaml`. DO NOT share your information.
 
 3. Make the development script executable
 ```bash
@@ -78,7 +78,11 @@ Examples:
 
 ### Development
 - Frontend runs on port 3000
-- iBeam API runs on port 5000
+- iBeam gateway: port 5000 inside Docker, published on host port 5050 (`IBEAM_HOST_PORT`) because macOS AirPlay Receiver owns 5000. Log in at https://localhost:5050 (health server on 5001 inside the container: `/livez`, `/readyz`)
+- The browser never calls the gateway directly: the Vite dev server proxies `/v1/api/*` to `IBEAM_GATEWAY_URL` (`https://ibeam:5000` in Docker, `https://localhost:5050` when running `npm run dev` on the host)
+- Production (`./dev.sh build production`): nginx serves `dist` on port 3000 and proxies `/v1/api/*` to `https://ibeam:5000` (`nginx.conf`)
+- Optional HTTPS for the dev server: put `cacert.pem` and `cacert_decrypted.pem` in `inputs/`
+- Checks: `npm run lint`, `npm test` (Vitest), `npm run build`
 
 ## Important Notes
 
