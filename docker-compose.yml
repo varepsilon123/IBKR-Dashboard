@@ -12,7 +12,8 @@ services:
       - NODE_ENV=${NODE_ENV:-development}
       - IBEAM_GATEWAY_URL=https://ibeam:5000 # Used by the Vite dev server proxy (/v1/api -> gateway)
     stdin_open: ${STDIN_OPEN:-true}  # Enable stdin_open in development for React DevTools, disable in production
-    command: sh -c "if [ \"$NODE_ENV\" = \"production\" ]; then serve -s dist -l 3000; else npm install && npm run dev -- --host; fi"
+    # production: nginx serves dist + proxies /v1/api (nginx.conf); development: Vite dev server + proxy
+    command: sh -c "if [ \"$NODE_ENV\" = \"production\" ]; then exec nginx -g 'daemon off;'; else npm install && npm run dev -- --host; fi"
     depends_on:
       - ibeam
     healthcheck:
